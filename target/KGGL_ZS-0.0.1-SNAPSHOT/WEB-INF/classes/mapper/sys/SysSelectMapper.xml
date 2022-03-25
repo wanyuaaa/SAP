@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.sys.mapper.SelectMapper">
+
+	<select id="selectUserByNameValue" resultType="com.xsw.common.entry.SysUserValue">
+		select *
+		from
+		user_value
+		where
+		name = #{name}
+	</select>
+
+	<select id="selectUserById" resultType="int">
+		select count(*)
+		from
+		user_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectReimByIdValue" resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		reim_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectTaskByIdValue" resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		task_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectPurchByIdValue" resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		purch_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectExecutiveByName" resultType="String">
+		select member
+		from
+		user_value
+		where
+		name = #{name}
+	</select>
+	
+	<select id="selectUserPasswordById" resultType="String">
+		select password
+		from
+		user_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectTaskById" resultType="int">
+		select count(*)
+		from
+		task_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectReimById" resultType="int">
+		select count(*)
+		from
+		reim_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectPurchById" resultType="int">
+		select count(*)
+		from
+		purch_value
+		where
+		id = #{id}
+	</select>
+
+	<select id="selectUserByUsername" resultType="int">
+		select count(*)
+		from
+		user_value
+		where
+		username = #{username}
+	</select>
+
+	<select id="selectUserByName" resultType="int">
+		select count(*)
+		from
+		user_value
+		where
+		name = #{name}
+	</select>
+
+	<select id="selectUserByUsernameAll" resultType="com.xsw.common.entry.SysUserValue">
+		select *
+		from
+		user_value
+		where
+		username = #{username}
+	</select>
+
+	<select id="selectAllUser"
+		resultType="com.xsw.common.entry.SysUserValue">
+		select *
+		from
+		(select rownum as rn,t1.* from user_value t1)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllReim"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from reim_value t1 where name = #{name})tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+
+	<select id="selectAllUserCount" resultType="int">
+		select count(*)
+		from
+		user_value
+	</select>
+	
+	<select id="selectAllReimCount" resultType="int">
+		select count(*)
+		from
+		user_value
+		where 
+		name = #{name}
+	</select>
+	
+	<select id="selectAllTask"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from task_value t1 where name = #{name})tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+
+	<select id="selectAllTaskCount" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		name = #{name}
+	</select>
+	
+	<select id="selectAllPurch"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from Purch_value t1 where name = #{name})tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+
+	<select id="selectAllPurchCount" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		name = #{name}
+	</select>
+	
+	<select id="selectExecutiveTaskByManager"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from task_value t1 where executive = 1 and accounting = 1 and Manager = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByManager" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and accounting = 1 and Manager = 0
+	</select>
+	
+	<select id="selectExecutiveTaskByExecutive"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from task_value t1 where executive = 0 )tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByExecutive" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 0
+	</select>
+	
+	<select id="selectExecutiveTaskByAccounting"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from task_value t1 where executive = 1 and accounting = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByAccounting" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and accounting = 0
+	</select>
+	
+	<select id="selectExecutiveTaskByFinance"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from task_value t1 where executive = 1 and accounting = 1 and Manager = 1 and Finance = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByFinance" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and accounting = 1 and Manager = 1 and Finance = 0
+	</select>
+	
+	<select id="selectExecutivePurchByManager"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from purch_value t1 where executive = 1 and accounting = 1 and Manager = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutivePurchCountByManager" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		executive = 1 and accounting = 1 and Manager = 0
+	</select>
+	
+	<select id="selectExecutivePurchByExecutive"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from Purch_value t1 where executive = 0 )tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutivePurchCountByExecutive" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		executive = 0
+	</select>
+	
+	<select id="selectExecutivePurchByAccounting"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from Purch_value t1 where executive = 1 and accounting = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutivePurchCountByAccounting" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		executive = 1 and accounting = 0
+	</select>
+	
+	<select id="selectExecutivePurchByFinance"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from Purch_value t1 where executive = 1 and accounting = 1 and Manager = 1 and Finance = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutivePurchCountByFinance" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		executive = 1 and accounting = 1 and Manager = 1 and Finance = 0
+	</select>
+
+	<select id="selectExecutiveReimByManager"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from Reim_value t1 where executive = 1 and accounting = 1 and Manager = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveReimCountByManager" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where 
+		executive = 1 and accounting = 1 and Manager = 0
+	</select>
+	
+	<select id="selectExecutiveReimByExecutive"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from Reim_value t1 where executive = 0 )tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveReimCountByExecutive" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where 
+		executive = 0
+	</select>
+	
+	<select id="selectExecutiveReimByAccounting"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from Reim_value t1 where executive = 1 and accounting = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveReimCountByAccounting" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where 
+		executive = 1 and accounting = 0
+	</select>
+	
+	<select id="selectExecutiveReimByFinance"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from Reim_value t1 where executive = 1 and accounting = 1 and Manager = 1 and Finance = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveReimCountByFinance" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where 
+		executive = 1 and accounting = 1 and Manager = 1 and Finance = 0
+	</select>
+</mapper>
+
+
+
+	

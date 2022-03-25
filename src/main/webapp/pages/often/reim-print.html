@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>山西欣思威科贸有限公司经费支出报销单打印</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="../../css/oksub.css">
+<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body>
+	<div class="ok-body">
+		<!--form表单-->
+		<table align="center" cellspacing="0" width="660" height="440"
+			bordercolor="black" border="1"
+			style="text-align: center; vertical-align: middle;">
+			<tr>
+				<th colspan="6" bgcolor="gray" height="40px" style="font-size: 18px">经费支出报销单</th>
+			</tr>
+			<tr>
+				<td colspan="1" width="100" bgcolor="#DDD8D8" style="font-weight:bold;">序号</td>
+				<td colspan="2" id="id" width="240"></td>
+				<td colspan="1" width="100" bgcolor="#DDD8D8" style="font-weight:bold;">创建时间</td>
+				<td colspan="2" width="180" id="createtime"></td>
+			</tr>
+			<tr>
+				<td colspan="1" bgcolor="#DDD8D8" style="font-weight:bold;">使用地点</td>
+				<td colspan="2" id="place" style="font-weight:bold;"></td>
+				<td colspan="1" bgcolor="#DDD8D8" style="font-weight:bold;">使用日期</td>
+				<td colspan="2" id="useTime" style="font-weight:bold;"></td>
+			</tr>
+			<tr>
+				<td colspan="1" bgcolor="#DDD8D8" style="font-weight:bold;">报销内容</td>
+				<td colspan="2" id="goods" style="font-weight:bold;"></td>
+				<td colspan="1" bgcolor="#DDD8D8" style="font-weight:bold;">申请人员</td>
+				<td colspan="2" id="name" style="font-weight:bold;"></td>
+			</tr>
+			<tr>
+				<td colspan="1" bgcolor="#DDD8D8" style="font-weight:bold;">使用项目</td>
+				<td colspan="2" id="project" style="font-weight:bold;"></td>
+				<td colspan="1" bgcolor="#DDD8D8" style="font-weight:bold;">附带单据</td>
+				<td colspan="2"></td>
+			</tr>
+			<tr>
+				<td colspan="2" bgcolor="#DDD8D8" style="font-weight:bold;">合计金额（大写）</td>
+				<td colspan="2" id="price" style="font-weight:bold;"></td>
+				<td colspan="2" id="pricel" style="font-weight:bold;"></td>
+			</tr>
+			<tr>
+				<td colspan="1" width="110" bgcolor="#DDD8D8" style="font-weight:bold;">经办人</td>
+				<td colspan="1" width="110" bgcolor="#DDD8D8" style="font-weight:bold;">职务</td>
+				<td colspan="2" width="150" bgcolor="#DDD8D8" style="font-weight:bold;">审核记录</td>
+				<td colspan="2" width="250" bgcolor="#DDD8D8" style="font-weight:bold;">审核时间</td>
+			</tr>
+			<tr>
+				<td colspan="1">连雅琳</td>
+				<td colspan="1">会计</td>
+				<td colspan="2" id="accounting_value"></td>
+				<td colspan="2" id="accounting_time"></td>
+			</tr>
+			<tr>
+				<td colspan="1">康军</td>
+				<td colspan="1">总经理</td>
+				<td colspan="2" id="manager_value"></td>
+				<td colspan="2" id="manager_time"></td>
+			</tr>
+			<tr>
+				<td colspan="1">孙丽萍</td>
+				<td colspan="1">出纳</td>
+				<td colspan="2" id="finance_value"></td>
+				<td colspan="2" id="finance_time"></td>
+			</tr>
+		</table>
+
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<button id="btn" class="layui-btn" style="width: 100px" onclick="printNum();print()">打印</button>
+		</div>
+	</div>
+	<!--js逻辑-->
+	<script src="../../lib/layui/layui.js"></script>
+	<script src="../../js/jquery-3.5.1.min.js"></script>
+	<script>
+		let initData;
+
+		function printNum() {
+			$("#btn").hide();
+			var id = document.getElementById('id').innerText;
+			var url = "http://192.168.1.10/sap/insert/insertReimPrintCount.do";
+			
+			var params = {"id" : id};
+			$.ajax({
+				type : "POST",
+				dataType : 'json',
+				contentType : "application/json;charset=utf-8",
+				data : JSON.stringify(params),
+				url : url,
+				success : function(res) {
+					if (res.state == 1) {
+						console.log(res);
+					} else {
+						console.log(res);
+					}
+				},
+				error : function(res) {
+					alert("服务器错误，请核对日志！");
+				}
+			});
+		}
+		
+		function initForm(data) {
+			let jsonString = JSON.stringify(data);
+			initData = JSON.parse(jsonString);
+
+			console.log(data);
+
+			document.getElementById('id').innerHTML = data.id;
+			document.getElementById('name').innerHTML = data.name;
+			document.getElementById('createtime').innerHTML = data.createTime;
+			document.getElementById('goods').innerHTML = data.goods;
+			document.getElementById('place').innerHTML = data.place;
+			document.getElementById('useTime').innerHTML = data.useTime;
+			document.getElementById('project').innerHTML = data.project;
+			document.getElementById('price').innerHTML = number_chinese(data.price);
+			document.getElementById('pricel').innerHTML = "¥"+data.price+"元";
+			document.getElementById('accounting_value').innerHTML = data.accounting_value;
+			document.getElementById('accounting_time').innerHTML = data.accounting_time;
+			document.getElementById('manager_value').innerHTML = data.manager_value;
+			document.getElementById('manager_time').innerHTML = data.manager_time;
+			document.getElementById('finance_value').innerHTML = data.finance_value;
+			document.getElementById('finance_time').innerHTML = data.finance_time;
+		}
+
+		function number_chinese(str) {
+			var num = parseFloat(str);
+			var strOutput = "", strUnit = '仟佰拾亿仟佰拾万仟佰拾元角分';
+			num += "00";
+			var intPos = num.indexOf('.');
+			if (intPos >= 0) {
+				num = num.substring(0, intPos) + num.substr(intPos + 1, 2);
+			}
+			strUnit = strUnit.substr(strUnit.length - num.length);
+			for (var i = 0; i < num.length; i++) {
+				strOutput += '零壹贰叁肆伍陆柒捌玖'.substr(num.substr(i, 1), 1)
+						+ strUnit.substr(i, 1);
+			}
+			return strOutput.replace(/零角零分$/, '整').replace(/零[仟佰拾]/g, '零')
+					.replace(/零{2,}/g, '零').replace(/零([亿|万])/g, '$1').replace(
+							/零+元/, '元').replace(/亿零{0,3}万/, '亿').replace(/^元/,
+							"零元")
+
+		}
+
+		layui.use([ "element", "form", "laydate", "okLayer", "okUtils" ],
+				function() {
+					let form = layui.form;
+					let laydate = layui.laydate;
+					let okLayer = layui.okLayer;
+					let okUtils = layui.okUtils;
+					okLoading.close();
+					form.val("filter", initData);
+				})
+	</script>
+</body>
+</html>

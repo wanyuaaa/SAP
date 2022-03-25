@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加用户</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="../../css/oksub.css">
+<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body>
+	<div class="ok-body">
+		<!--form表单-->
+		<form class="layui-form ok-form" lay-filter="filter">
+			<div class="layui-form-item">
+				<label class="layui-form-label">ID</label>
+				<div class="layui-input-block">
+					<input type="text" name="id" autocomplete="off" readonly="readonly"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">创建时间</label>
+				<div class="layui-input-block">
+					<input type="text" name="createTime" readonly="readonly"
+						placeholder="创建时间 格式为yyyy-MM-dd HH:mm:ss" autocomplete="off"
+						class="layui-input" id="birthday1" lay-verify="birthdayVerify">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">申请人</label>
+				<div class="layui-input-block">
+					<input type="text" name="name" autocomplete="off"
+						readonly="readonly" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">申请金额</label>
+				<div class="layui-input-block">
+					<input type="text" name="price" autocomplete="off"
+						readonly="readonly" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">使用地点</label>
+				<div class="layui-input-block">
+					<input type="text" name="place" autocomplete="off"
+						readonly="readonly" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">使用项目</label>
+				<div class="layui-input-block">
+					<input type="text" name="project" autocomplete="off"
+						readonly="readonly" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">审核状态</label>
+				<div class="layui-input-inline">
+					<input type="checkbox" id="manager" name="examine[manager]"
+						title="经理">
+				</div>
+				<div class="layui-form-mid layui-word-aux" id="manager_value">暂未审核，请等待！</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"></label>
+				<div class="layui-input-inline">
+					<input type="checkbox" id="finance" name="examine[finance]"
+						title="出纳">
+				</div>
+				<div class="layui-form-mid layui-word-aux" id="finance_value">暂未审核，请等待！</div>
+			</div>
+		</form>
+	</div>
+	<!--js逻辑-->
+	<script src="../../lib/layui/layui.js"></script>
+	<script>
+		let initData;
+
+		function initForm(data) {
+			let jsonString = JSON.stringify(data);
+			initData = JSON.parse(jsonString);
+			
+			if(data.manager == 1){
+				var input = document.getElementById('manager');
+				input.checked=true;
+			}
+			if(data.finance == 1){
+				var input = document.getElementById('finance');
+				input.checked=true;
+			}
+			document.getElementById('manager_value').innerHTML=data.manager_value+"	时间："+data.manager_time;
+			document.getElementById('finance_value').innerHTML=data.finance_value+"	时间："+data.finance_time;
+		}
+
+		layui.use([ "element", "form", "laydate", "okLayer", "okUtils" ],
+				function() {
+					let form = layui.form;
+					let laydate = layui.laydate;
+					let okLayer = layui.okLayer;
+					let okUtils = layui.okUtils;
+					okLoading.close();
+					form.val("filter", initData);
+				})
+	</script>
+</body>
+</html>

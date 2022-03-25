@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>修改密码</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="../../css/oksub.css">
+<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body class="childrenBody seting-pass">
+	<form class="layui-form changePwd">
+		<div style="margin: 0 0 15px 110px; color: #f00;">请妥善保管自己的密码，不提供密码找回功能！</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">ID</label>
+			<div class="layui-input-block">
+				<input type="text" id="id" name="id" readonly="true" disabled="disabled"
+					autocomplete="off" class="layui-input" lay-verify="required">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">用户名</label>
+			<div class="layui-input-block">
+				<input type="text" id="username" name = "username" autocomplete="off"
+					class="layui-input" lay-verify="required">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">姓名</label>
+			<div class="layui-input-block">
+				<input type="text" id="name" name = "name" autocomplete="off"
+					class="layui-input" lay-verify="required">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">手机号码</label>
+			<div class="layui-input-block">
+				<input type="text" id="phone" name ="phone" autocomplete="off"
+					class="layui-input" lay-verify="phone">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">旧密码</label>
+			<div class="layui-input-block">
+				<input type="password" placeholder="请输入旧密码" id = "oldPassword"
+					lay-verify="required|oldPwd" class="layui-input pwd opwd">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">新密码</label>
+			<div class="layui-input-block">
+				<input type="password" placeholder="请输入新密码"
+					lay-verify="required|pass" id="oldPwd" class="layui-input pwd npwd">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">确认密码</label>
+			<div class="layui-input-block">
+				<input type="password" placeholder="请确认密码" id ="newPassword"
+					lay-verify="required|confirmPwd" class="layui-input pwd">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit="" lay-filter="changePwd" onclick="updataUser()">立即修改</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript" src="../../lib/layui/layui.js"></script>
+	<script type="text/javascript">
+	layui.use(['form', 'layer'], function () {
+		var form = layui.form,
+			layer = layui.layer,
+			$ = layui.jquery,
+			$form = $('form');
+		okLoading.close();
+		//添加验证规则verify
+		form.verify({
+			pass: [
+				/^[\S]{6,16}$/
+				, '密码必须6到16位，且不能出现空格'
+			],
+			oldPwd: function (value, item) {
+			},
+			confirmPwd: function (value, item) {
+				if (!new RegExp($("#oldPwd").val()).test(value)) {
+					return "两次输入密码不一致，请重新输入！";
+				}
+			},
+
+		});
+
+	});
+	</script>
+	<script src="../../js/jquery-3.5.1.min.js"></script>
+	<script>
+		$(function() {
+			selectTable();
+		});
+		
+		function updataUser(){
+			debugger
+			var id = $("#id").attr("value");
+			var username = $("#username").attr("value");
+			var name = $("#name").attr("value");
+			var phone = $("#phone").attr("value");
+			var oldPassword = $("#oldPassword").val();
+			var newPassword = $("#newPassword").val();
+			
+			var url = "http://192.168.1.10/sap/update/updateUserbyUser.do";
+			var params = {
+				"id" : id,
+				"username" : username,
+				"name" : name,
+				"phone" : phone,
+				"oldPassword" : oldPassword,
+				"newPassword" : newPassword
+			};
+			
+			$.ajax({
+				type : "POST",
+				dataType : 'json',
+				contentType : "application/json;charset=utf-8",
+				data : JSON.stringify(params),
+				url : url,
+				success : function(res) {
+					if (res.state == 1) {
+						okLayer.greenTickMsg("编辑成功", function() {
+							parent.layer.close(parent.layer
+									.getFrameIndex(window.name));
+						});
+					} else {
+						function(error) {
+							console.log(error)
+						}
+					}
+				},
+				error : function(res) {
+					alert("服务器错误，请核对日志！");
+				}
+			});
+		}
+
+		function selectTable() {
+			var strCookie = document.cookie;
+			var arr = strCookie.split("; ");
+			var name = window.decodeURIComponent(window.atob(arr[1]
+					.substring(5)));
+
+			var url = "http://192.168.1.10/sap/select/selectUser.do";
+			var params = {
+				"name" : name
+			};
+			$.getJSON(url, params, function(result) {
+				if (result.state == 1) {
+					$("#id").attr({
+						"value" : result.data.id
+					});
+					$("#username").attr({
+						"value" : result.data.username
+					});
+					$("#name").attr({
+						"value" : result.data.name
+					});
+					$("#phone").attr({
+						"value" : result.data.phone
+					});
+					
+					var sex = result.data.sex;
+					if(sex == 0){
+						var str4  = "男";
+					}else{
+						var str4  = "女";
+					}
+					$("#sex").attr({
+						"value" : str4
+					});
+				} else {
+					alert(result.message);
+				}
+			});
+		}
+	</script>
+</body>
+</html>

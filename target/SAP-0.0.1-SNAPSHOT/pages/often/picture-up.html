@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加用户</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="../../css/oksub.css">
+<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body>
+	<div class="layui-form-item">
+    <div class="layui-input-inline uploadHeadImage">
+        <div class="layui-upload-drag" id="headImg" style="height: 350px;width: 530px;">
+            <i class="layui-icon"></i>
+            <p>点击上传图片，或将图片拖拽到此处</p>
+        </div>
+        <div class="layui-input-inline">
+        <div class="layui-upload-list">
+            <img class="layui-upload-img headImage" style="height: 230px;width: 600px;" src="../../images/uploadImg.jpg" id="demo1">
+            <p id="demoText"></p>
+        </div>
+    </div>
+    </div>
+</div>
+	<!--js逻辑-->
+	<script src="../../lib/layui/layui.js"></script>
+	<script>
+		let initData;
+
+		function initForm(data) {
+			let jsonString = JSON.stringify(data);
+			initData = JSON.parse(jsonString);
+		}
+
+	 	layui.use(["jquery", "upload", "form", "layer", "element", "laydate", "okLayer", "okUtils"], function () {
+		 	let form = layui.form;
+			let laydate = layui.laydate;
+			let okLayer = layui.okLayer;
+			let okUtils = layui.okUtils;
+			okLoading.close();
+			form.val("filter", initData);
+			
+			var id = localStorage.getItem("id");
+		 
+	        var $ = layui.$,
+	            element = layui.element,
+	            layer = layui.layer,
+	            upload = layui.upload;
+	        //拖拽上传
+	        var uploadInst = upload.render({
+	            elem: '#headImg'
+	            , url: '/sap/insert/upload.do'
+	            , size: 5000
+	            , data:{id:id}
+	            , before: function (obj) {
+	                //预读本地文件示例，不支持ie8
+	                obj.preview(function (index, file, result) {
+	                    $('#demo1').attr('src', result); //图片链接（base64）
+	                });
+	            }
+	            , done: function (res) {
+	            	console.log(res);
+	            	if(res.code == "erro"){
+	            		alert(res.msg);
+	            		parent.layer.close(parent.layer
+								.getFrameIndex(window.name));
+	            	}else{
+	            		okLayer.greenTickMsg("上传成功", function() {
+							parent.layer.close(parent.layer
+									.getFrameIndex(window.name));
+						});
+	            	}
+	            }
+	            , error: function () {
+	                var demoText = $('#demoText');
+	                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+	                demoText.find('.demo-reload').on('click', function () {
+	                    uploadInst.upload();
+	                });
+	            }
+	        });
+	        element.init();
+	    });
+	</script>
+</body>
+</html>

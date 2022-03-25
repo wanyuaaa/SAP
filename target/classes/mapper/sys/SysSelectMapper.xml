@@ -1,0 +1,1534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.sys.mapper.SelectMapper">
+
+	<select id="selectReimPrintCount" resultType="String">
+		select printcount
+		from
+		reim_value
+		where
+		id = #{id}
+	</select>
+	<select id="selectTaskPrintCount" resultType="String">
+		select printcount
+		from
+		task_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectTaskCountAll" resultType="int">
+		select count(*)
+		from
+		task_value
+		where
+		Executive = #{e} and Accounting = #{a} and Manager = #{m} and Finance = #{f}
+	</select>
+	
+	<select id="selectReimCountAll" resultType="int">
+		select count(*)
+		from
+		reim_value
+		where
+		Accounting = #{a} and Manager = #{m} and Finance = #{f}
+	</select>
+	
+	<select id="selectPurchCountAll" resultType="int">
+		select count(*)
+		from
+		purch_value
+		where
+		Manager = #{m} and Executive = #{e}
+	</select>
+	
+	<select id="selectLoanCountAll" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where
+		Manager = #{m} and Finance = #{f}
+	</select>
+
+	<select id="selectAllUserName" resultType="String">
+		select name
+		from
+		user_value
+		order by name asc
+	</select>
+	
+	<select id="selectUserName" resultType="String">
+		select username
+		from
+		user_value
+		where
+		name = #{name}
+	</select>
+	
+	<select id="selectTaskTotalPriceByName" resultType="String">
+		select totalprice
+		from
+		task_value
+		where
+		name = #{name} and status = 1 and
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectTaskCount" resultType="int">
+		select count(*)
+		from
+		task_value
+		where
+		name = #{name} and status = 1 and
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectReimTotalPriceByName" resultType="String">
+		select price
+		from
+		Reim_value
+		where
+		name = #{name} and status = 1 and
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectReimCount" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where
+		name = #{name} and status = 1 and
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectLoanTotalPriceByName" resultType="String">
+		select price
+		from
+		Loan_value
+		where
+		name = #{name} and status = 1 and
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectLoanCount" resultType="int">
+		select count(*)
+		from
+		Loan_value
+		where
+		name = #{name} and status = 1 and
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+
+	<select id="selectUserByNameValue" resultType="com.xsw.common.entry.SysUserValue">
+		select *
+		from
+		user_value
+		where
+		name = #{name}
+	</select>
+
+	<select id="selectUserById" resultType="int">
+		select count(*)
+		from
+		user_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectReimByIdValue" resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		reim_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectTaskByIdValue" resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		task_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectPurchByIdValue" resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		purch_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectLoanByIdValue" resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		loan_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectExecutiveByName" resultType="String">
+		select member
+		from
+		user_value
+		where
+		name = #{name}
+	</select>
+	
+	<select id="selectUserPasswordById" resultType="String">
+		select password
+		from
+		user_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectTaskById" resultType="int">
+		select count(*)
+		from
+		task_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectReimById" resultType="int">
+		select count(*)
+		from
+		reim_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectPurchById" resultType="int">
+		select count(*)
+		from
+		purch_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectLoanById" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where
+		id = #{id}
+	</select>
+
+	<select id="selectUserByUsername" resultType="int">
+		select count(*)
+		from
+		user_value
+		where
+		username = #{username}
+	</select>
+
+	<select id="selectUserByName" resultType="int">
+		select count(*)
+		from
+		user_value
+		where
+		name = #{name}
+	</select>
+
+	<select id="selectUserByUsernameAll" resultType="com.xsw.common.entry.SysUserValue">
+		select *
+		from
+		user_value
+		where
+		username = #{username}
+	</select>
+
+	<select id="selectOperationListCount" resultType="int">
+		select count(*)
+		from
+		operation_value
+		where
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectOperationList"
+		resultType="com.xsw.common.entry.SysOperationValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from operation_value order by odertime desc) t1
+		where odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectOperationListCountByName" resultType="int">
+		select count(*)
+		from
+		operation_value
+		where 
+		name = #{name} and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectOperationListByName"
+		resultType="com.xsw.common.entry.SysOperationValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from operation_value order by odertime desc) t1
+		where name = #{name} and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllUser"
+		resultType="com.xsw.common.entry.SysUserValue">
+		select *
+		from
+		(select rownum as rn,t1.* from user_value t1)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllReimByTwoTime"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from reim_value order by odertime desc) t1
+		where name = #{name} and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllReimCountByTwoTime" resultType="int">
+		select count(*)
+		from
+		reim_value
+		where 
+		name = #{name}
+		and
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllReimByStartTime"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from reim_value order by odertime desc) t1
+		where name = #{name} 
+		and odertime &gt;= to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllReimCountByStartTime" resultType="int">
+		select count(*)
+		from
+		reim_value
+		where 
+		name = #{name}
+		and
+		odertime &gt;= to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllReimByEndTime"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from reim_value order by odertime desc) t1
+		where name = #{name} 
+		and odertime &lt;= to_date(#{endTime}, 'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllReimCountByEndTime" resultType="int">
+		select count(*)
+		from
+		reim_value
+		where 
+		name = #{name}
+		and
+		odertime &lt;= to_date(#{endTime}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllReim"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from reim_value order by odertime desc) t1
+		where name = #{name})tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllReimCount" resultType="int">
+		select count(*)
+		from
+		reim_value
+		where 
+		name = #{name}
+	</select>
+	
+	<select id="selectAllReimLast"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from reim_value order by odertime desc) t1
+		where status = 1
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllReimCountLast" resultType="int">
+		select count(*)
+		from
+		reim_value
+		where status = 1
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllReimLastByName"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from reim_value order by odertime desc) t1
+		where status = 1 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllReimCountLastByName" resultType="int">
+		select count(*)
+		from
+		reim_value
+		where status = 1 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllReimByRole"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from reim_value t1 ORDER BY odertime DESC)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllTaskByRole"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from Task_value t1 ORDER BY odertime DESC)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllPurchByRole"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from Purch_value t1 ORDER BY odertime DESC)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+
+	<select id="selectAllUserCount" resultType="int">
+		select count(*)
+		from
+		user_value
+	</select>
+	
+	<select id="selectAllReimCountByRole" resultType="int">
+		select count(*)
+		from
+		reim_value
+	</select>
+	
+	<select id="selectAllTaskCountByRole" resultType="int">
+		select count(*)
+		from
+		Task_value
+	</select>
+	
+	<select id="selectAllPurchCountByRole" resultType="int">
+		select count(*)
+		from
+		purch_value
+	</select>
+	
+	<select id="selectAllTask"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where name = #{name})tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllTaskByTwoTime"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where name = #{name} and status = 1 and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllTaskCountByTwoTime" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		name = #{name}
+		and
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllTaskByStartTime"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where name = #{name} and status = 1 odertime &gt;= to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllTaskCountByStartTime" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		name = #{name}
+		and
+		odertime &gt;= to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllTaskByEndTime"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where name = #{name} and status = 1 and odertime &lt;= to_date(#{endTime}, 'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllTaskCountByEndTime" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		name = #{name}
+		and
+		odertime &lt;= to_date(#{endTime}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllTaskLast"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where status = 1
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllTaskLastByName"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where status = 1 and name = #{name} 
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+
+	<select id="selectAllTaskCount" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		name = #{name}
+	</select>
+	
+	<select id="selectAllTaskCountLast" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		status = 1
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllTaskCountLastByName" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		status = 1 and name = #{name} 
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllLoanByTwoTime"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from loan_value order by odertime desc) t1
+		where name = #{name} 
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllLoanCountByTwoTime" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where 
+		name = #{name}
+		and
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllPurchByTwoTime"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Purch_value order by odertime desc) t1
+		where name = #{name} 
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllPurchCountByTwoTime" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		name = #{name}
+		and
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllPurchByStartTime"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Purch_value order by odertime desc) t1
+		where name = #{name} and odertime &gt;= to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllPurchCountByStartTime" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		name = #{name}
+		and
+		odertime &gt;= to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllLoanByStartTime"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from loan_value order by odertime desc) t1
+		where name = #{name} and odertime &gt;= to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllLoanCountByStartTime" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where 
+		name = #{name}
+		and
+		odertime &gt;= to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllPurchByEndTime"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Purch_value order by odertime desc) t1
+		where name = #{name} and odertime &lt;= to_date(#{endTime}, 'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllPurchCountByEndTime" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		name = #{name}
+		and
+		odertime &lt;= to_date(#{endTime}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllLoanByEndTime"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from loan_value order by odertime desc) t1
+		where name = #{name} and odertime &lt;= to_date(#{endTime}, 'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllLoanCountByEndTime" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where 
+		name = #{name}
+		and
+		odertime &lt;= to_date(#{endTime}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllPurch"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Purch_value order by odertime desc) t1
+		where name = #{name})tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllPurchCount" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		name = #{name}
+	</select>
+	
+	<select id="selectAllLoan"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from loan_value order by odertime desc) t1
+		where name = #{name})tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectAllLoanCount" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where 
+		name = #{name}
+	</select>
+	
+	<select id="selectAllPurchLast"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Purch_value order by odertime desc) t1
+		where status = 1
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+
+	<select id="selectAllPurchCountLast" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		status = 1
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllLoanLast"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Loan_value order by odertime desc) t1
+		where status = 1
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+
+	<select id="selectAllLoanCountLast" resultType="int">
+		select count(*)
+		from
+		Loan_value
+		where 
+		status = 1
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllPurchLastByName"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Purch_value order by odertime desc) t1 
+		where status = 1 and name =#{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+
+	<select id="selectAllPurchCountLastByName" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		status = 1 and name =#{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectAllLoanLastByName"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Loan_value order by odertime desc) t1 
+		where status = 1 and name =#{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+
+	<select id="selectAllLoanCountLastByName" resultType="int">
+		select count(*)
+		from
+		Loan_value
+		where 
+		status = 1 and name =#{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveTaskByManager"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+		and executive = 1 and accounting = 1 and manager = 0 and status != 1 )tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByManager" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and accounting = 1 and status != 1 and manager = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveTaskCountByManagerA" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and accounting = 1 and status = 0 and manager = 0
+	</select>
+	
+	<select id="selectExecutiveTaskByManagerByName"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+		and executive = 1 and accounting = 1 and status = 0 and manager = 0 and name = #{name})tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByManagerByName" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and accounting = 1 and status = 0 and manager = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveTaskCount" resultType="int">
+		select count(*)
+		from
+		task_value
+	</select>
+	
+	<select id="selectExecutiveTask"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskByExecutive"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+		and status = 0 and executive = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByExecutive" resultType="int">
+		select count(*)
+		from
+		task_value
+		where
+		status = 0 and executive = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveTaskCountByExecutiveA" resultType="int">
+		select count(*)
+		from
+		task_value
+		where
+		status = 0 and executive = 0
+	</select>
+	
+	<select id="selectExecutiveTaskByExecutiveByName"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+		and status = 0 and executive = 0 and name = #{name})tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByExecutiveByName" resultType="int">
+		select count(*)
+		from
+		task_value
+		where
+		status = 0 and executive = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveTaskByAccounting"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where executive = 1 and accounting = 0 and status = 0 
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByAccounting" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and accounting = 0 and status = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveTaskCountByAccountingA" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and status =0 and Accounting = 0
+	</select>
+	
+	<select id="selectExecutiveTaskByAccountingByName"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where executive = 1 and accounting = 0 and status = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByAccountingByName" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and accounting = 0 and status = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveTaskByFinance"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1 
+		where executive = 1 and accounting = 1 and Manager = 1 and finance = 0 and status = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByFinance" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and accounting = 1 and Manager = 1 and finance = 0 and status = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveTaskCountByFinanceA" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and accounting = 1 and Manager = 1 and status =0 and finance = 0
+	</select>
+	
+	<select id="selectExecutiveTaskByFinanceByName"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from task_value order by odertime desc) t1
+		where executive = 1 and accounting = 1 and Manager = 1 and finance = 0 and status = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveTaskCountByFinanceByName" resultType="int">
+		select count(*)
+		from
+		task_value
+		where 
+		executive = 1 and accounting = 1 and Manager = 1 and finance = 0 and status = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutivePurchByManager"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Purch_value order by odertime desc) t1
+		where status = 0 and manager = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutivePurchCountByManager" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where
+		status = 0 and manager = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveLoanByManager"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from loan_value order by odertime desc) t1
+		where status = 0 and manager = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveLoanCountByManager" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where
+		status = 0 and manager = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutivePurchCountByManagerA" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where
+		status = 0 and manager = 0
+	</select>
+	
+	<select id="selectExecutiveLoanCountByManagerA" resultType="int">
+		select count(*)
+		from
+		Loan_value
+		where
+		status = 0 and manager = 0
+	</select>
+	
+	<select id="selectExecutivePurchByManagerByName"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Purch_value order by odertime desc) t1
+		where status = 0 and manager = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutivePurchCountByManagerByName" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where
+		status = 0 and manager = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveLoanByManagerByName"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from loan_value order by odertime desc) t1
+		where status = 0 and manager = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveLoanCountByManagerByName" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where
+		status = 0 and manager = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutivePurch"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Purch_value order by odertime desc) t1
+		where status != 1)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveLoan"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from loan_value order by odertime desc) t1
+		where status != 1)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutivePurchCount" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where
+		status != 1
+	</select>
+	
+	<select id="selectExecutiveLoanCount" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where
+		status != 1
+	</select>
+	
+	<select id="selectExecutivePurchByExecutive"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Purch_value order by odertime desc) t1
+		where manager = 1 and status = 0 and Executive = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutivePurchCountByExecutive" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		manager = 1 and status = 0 and Executive = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveLoanByFinance"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from loan_value order by odertime desc) t1
+		where manager = 1 and status = 0 and finance = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveLoanCountByFinance" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where 
+		manager = 1 and status = 0 and finance = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutivePurchCountByExecutiveA" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		manager = 1 and status = 0 and executive = 0
+	</select>
+	
+	<select id="selectExecutivePurchCountByExecutiveB" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		manager = 1 and status = 3 and executive = 0
+	</select>
+	
+	<select id="selectExecutivePurchByExecutiveByName"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Purch_value order by odertime desc) t1
+		where manager = 1 and status = 0 and Executive = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutivePurchCountByExecutiveByName" resultType="int">
+		select count(*)
+		from
+		Purch_value
+		where 
+		manager = 1 and status = 0 and Executive = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveLoanByFinanceByName"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from loan_value order by odertime desc) t1
+		where manager = 1 and status = 0 and finance = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveLoanCountByFinanceByName" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where 
+		manager = 1 and status = 0 and finance = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveReimByManager"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Reim_value order by odertime desc) t1
+		where
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss') 
+		and accounting = 1 and status = 0 and manager = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveReimByManagerByName"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Reim_value order by odertime desc) t1
+		where
+		odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss') 
+		and name = #{name} and accounting = 1 and status = 0 and manager = 0)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveReim"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Reim_value order by odertime desc) t1
+		and status != 1)tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveReimCountByManager" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where 
+		accounting = 1 and status = 0 and manager = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveReimCountByManagerA" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where 
+		accounting = 1 and status = 0 and manager = 0
+	</select>
+	
+	<select id="selectExecutiveReimCountByManagerByName" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where 
+		accounting = 1 and status = 0 and manager = 0 and name = #{name}
+	</select>
+	
+	<select id="selectExecutiveReimCount" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where
+		status != 1
+	</select>
+	
+	<select id="selectExecutiveReimByAccounting"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Reim_value order by odertime desc) t1
+		where status = 0 and accounting = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveReimCountByAccountingA" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where
+		status =0 and Accounting = 0
+	</select>
+	
+	<select id="selectExecutiveReimCountByAccounting" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where
+		status = 0 and accounting = 0
+	</select>
+	
+	<select id="selectExecutiveReimByAccountingByName"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Reim_value order by odertime desc) t1
+		where status = 0 and accounting = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveReimCountByAccountingByName" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where
+		status = 0 and accounting = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveReimByFinance"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Reim_value order by odertime desc) t1
+		where accounting = 1 and Manager = 1 and status = 0 and finance = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveReimCountByFinance" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where 
+		accounting = 1 and Manager = 1 and status = 0 and finance = 0
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	
+	<select id="selectExecutiveReimCountByFinanceA" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where 
+		accounting = 1 and Manager = 1 and status =0 and finance = 0
+	</select>
+	
+	<select id="selectExecutiveLoanCountByFinanceA" resultType="int">
+		select count(*)
+		from
+		loan_value
+		where 
+		manager = 1 and status =0 and finance = 0
+	</select>
+	
+	<select id="selectExecutiveReimByFinanceByName"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		(select rownum as rn,t1.* from (select * from Reim_value order by odertime desc) t1
+		where accounting = 1 and Manager = 1 and status = 0 and finance = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss'))tab
+		where
+		tab.rn &gt;=#{rowNumMin}
+		and
+		tab.rn &lt;=#{rowNumMax}
+	</select>
+	
+	<select id="selectExecutiveReimCountByFinanceByName" resultType="int">
+		select count(*)
+		from
+		Reim_value
+		where 
+		accounting = 1 and Manager = 1 and status = 0 and finance = 0 and name = #{name}
+		and odertime between to_date(#{startTime}, 'yyyy-mm-dd hh24:mi:ss') and to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+	</select>
+</mapper>
+
+
+
+	

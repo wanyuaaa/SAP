@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>更新用户</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="../../css/oksub.css">
+<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body>
+	<div class="ok-body">
+		<!--form表单-->
+		<form class="layui-form ok-form" lay-filter="filter">
+			<div class="layui-form-item">
+				<label class="layui-form-label">ID</label>
+				<div class="layui-input-block">
+					<input type="text" name="id" autocomplete="off" readonly="readonly"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">创建时间</label>
+				<div class="layui-input-block">
+					<input type="text" name="createTime" readonly="readonly"
+						placeholder="创建时间 格式为yyyy-MM-dd HH:mm:ss" autocomplete="off"
+						class="layui-input" id="birthday1" lay-verify="birthdayVerify">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">使用日期</label>
+				<div class="layui-input-block">
+					<input type="text" name="useTime" readonly="true"
+						placeholder="使用日期 格式为yyyy-MM-dd HH:mm:ss" autocomplete="off"
+						class="layui-input" id="birthday2" lay-verify="birthdayVerify">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">申请人员</label>
+				<div class="layui-input-block">
+					<input type="text" name="name" autocomplete="off" readonly="true"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">物品信息</label>
+				<div class="layui-input-block">
+					<input type="text" name="goods" autocomplete="off" readonly="true"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">物品价格</label>
+				<div class="layui-input-block">
+					<input type="text" name="price" autocomplete="off" readonly="true"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">使用地点</label>
+				<div class="layui-input-block">
+					<input type="text" name="place" autocomplete="off" readonly="true"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">使用项目</label>
+				<div class="layui-input-block">
+					<input type="text" name="project" autocomplete="off" readonly="true"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">审核状态</label>
+				<div class="layui-input-block">
+					<input type="radio" name="examine" value="0" title="通过" checked>
+					<input type="radio" name="examine" value="1" title="驳回">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">备注信息</label>
+				<div class="layui-input-block">
+					<input type="text" name="reason" autocomplete="off"
+						class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="edit">审核</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--js逻辑-->
+	<script src="../../lib/layui/layui.js"></script>
+	<script>
+		let initData;
+
+		function initForm(data) {
+			let jsonString = JSON.stringify(data);
+			initData = JSON.parse(jsonString);
+		}
+
+		layui.use([ "element", "form", "laydate", "okLayer", "okUtils" ],
+				function() {
+					let form = layui.form;
+					let laydate = layui.laydate;
+					let okLayer = layui.okLayer;
+					let okUtils = layui.okUtils;
+					okLoading.close();
+					form.val("filter", initData);
+
+					form.on("submit(edit)", function(data) {
+						var strCookie=document.cookie;
+					    var arr = strCookie.split("; ");  
+					    var name = window.decodeURIComponent(window.atob(arr[1].substring(5)));
+						
+					    let key = "examineName";
+						let value =name;
+						data.field[key] = value;
+						
+						okUtils.ajax("/examine/examineReim.do", "post", data.field,
+								true).done(
+								function(response) {
+									console.log(response);
+									okLayer.greenTickMsg("审核成功", function() {
+										parent.layer.close(parent.layer
+												.getFrameIndex(window.name));
+									});
+								}).fail(function(error) {
+							console.log(error)
+						});
+						return false;
+					});
+				})
+	</script>
+</body>
+</html>

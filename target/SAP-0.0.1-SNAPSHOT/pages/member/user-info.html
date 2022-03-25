@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>基本资料</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="../../css/oksub.css">
+<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body class="user-info">
+	<form class="layui-form">
+		<div class="user_left">
+			<div class="layui-form-item">
+				<label class="layui-form-label">ID</label>
+				<div class="layui-input-block">
+					<input type="text" id="id" readonly="true" disabled="disabled"
+						autocomplete="off" class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">用户名</label>
+				<div class="layui-input-block">
+					<input type="text" id="username" readonly="true" autocomplete="off"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">姓名</label>
+				<div class="layui-input-block">
+					<input type="text" id="name" readonly="true" autocomplete="off"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">手机号码</label>
+				<div class="layui-input-block">
+					<input type="text" id="phone" readonly="true" autocomplete="off"
+						class="layui-input" lay-verify="phone">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">密码</label>
+				<div class="layui-input-block">
+					<input type="text" id="password" readonly="true" autocomplete="off"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">角色</label>
+				<div class="layui-input-block">
+					<input type="text" id="role" readonly="true" autocomplete="off"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">职责</label>
+				<div class="layui-input-block">
+					<input type="text" id="member" readonly="true" autocomplete="off"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">状态</label>
+				<div class="layui-input-block">
+					<input type="text" id="status" readonly="true" autocomplete="off"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">性别</label>
+				<div class="layui-input-block">
+					<input type="text" id="sex" readonly="true" autocomplete="off"
+						class="layui-input" lay-verify="required">
+				</div>
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript" src="../../lib/layui/layui.js"></script>
+	<script type="text/javascript" src="user-info.js"></script>
+	<script src="../../js/jquery-3.5.1.min.js"></script>
+	<script>
+		$(function() {
+			selectTable();
+		})
+
+		function selectTable() {
+			var strCookie = document.cookie;
+			var arr = strCookie.split("; ");
+			var name = window.decodeURIComponent(window.atob(arr[1]
+					.substring(5)));
+
+			var url = "http://192.168.1.10/sap/select/selectUser.do";
+			var params = {
+				"name" : name
+			};
+			$.getJSON(url, params, function(result) {
+				if (result.state == 1) {
+					$("#id").attr({
+						"value" : result.data.id
+					});
+					$("#username").attr({
+						"value" : result.data.username
+					});
+					$("#name").attr({
+						"value" : result.data.name
+					});
+					$("#phone").attr({
+						"value" : result.data.phone
+					});
+					$("#password").attr({
+						"value" : result.data.password
+					});
+					
+					var role = result.data.role;
+					if(role == 0){
+						var str2  = "管理员";
+					}else{
+						var str2  = "普通用户";
+					}
+					$("#role").attr({
+						"value" : str2
+					});
+					
+					var member = result.data.member;
+					if(member == 0){
+						var str  = "总经理";
+					}else if(member == 1){
+						var str  = "主管";
+					}else if(member == 2){
+						var str  = "会计";
+					}else if(member == 3){
+						var str  = "出纳";
+					}else if(member == 4){
+						var str  = "员工";
+					}
+					$("#member").attr({
+						"value" : str
+					});
+					
+					var status = result.data.status;
+					if(status == 0){
+						var str3  = "已启用";
+					}else{
+						var str3  = "已停用";
+					}
+					$("#status").attr({
+						"value" : str3
+					});
+					
+					var sex = result.data.sex;
+					if(sex == 0){
+						var str4  = "男";
+					}else{
+						var str4  = "女";
+					}
+					$("#sex").attr({
+						"value" : str4
+					});
+				} else {
+					alert(result.message);
+				}
+			});
+		}
+	</script>
+</body>
+</html>

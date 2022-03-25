@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>任务列表</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../../css/oksub.css">
+	<script type="text/javascript" src="../../lib/loading/okLoading.js"></script>
+</head>
+<body>
+<div class="ok-body">
+<div class="layui-row">
+			<form class="layui-form ok-search-form">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">开始日期</label>
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" placeholder="开始日期"
+								autocomplete="off" id="startTime" name="startTime">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">截止日期</label>
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" placeholder="截止日期"
+								autocomplete="off" id="endTime" name="endTime">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">姓名</label>
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" placeholder="姓名"
+								autocomplete="off" name="username">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<div class="layui-input-inline">
+							<button class="layui-btn" lay-submit="" lay-filter="search">
+								<i class="layui-icon">&#xe615;</i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	<!--数据表格-->
+	<table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+</div>
+<!--js逻辑-->
+<script src="../../lib/layui/layui.js"></script>
+<script>
+	layui.use(["element", "table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
+		let element = layui.element;
+		let table = layui.table;
+		let form = layui.form;
+		let util = layui.util;
+		let laydate = layui.laydate;
+		let okLayer = layui.okLayer;
+		let okUtils = layui.okUtils;
+		let okMock = layui.okMock;
+		okLoading.close();
+		util.fixbar({});
+
+		laydate.render({elem: "#startTime", type: "datetime"});
+		laydate.render({elem: "#endTime", type: "datetime"});
+		
+		var strCookie=document.cookie;
+ 		var arr = strCookie.split("; ");  
+ 		var name = window.decodeURIComponent(window.atob(arr[1].substring(5)));
+
+		let articleTable = table.render({
+			elem: "#tableId",
+			url: okMock.api.operationList,
+			limit: 20,
+			page: true,
+			even: true,
+			cellMinWidth: 80,
+			toolbar: "#toolbarTpl",
+			size: "sm",
+			cols: [[
+				{field: "id", title: "ID", width: "13%", sort: true, align: "center"},
+				{field: "name", title: "操作用户", width: "10%", align: "center"},
+				{field: "type", title: "操作类型", width: "7%", align: "center"},
+				{field: "createTime", title: "操作时间", width: "10%", align: "center"},
+				{field: "title", title: "操作详情", width: "60%", align: "lift"}
+				
+			]],
+			done: function (res, curr, count) {
+				element.init();
+			}
+		});
+		
+		form.on("submit(search)", function (data) {
+			articleTable.reload({
+				where: data.field,
+				page: {curr: 1}
+			});
+			return false;
+		});
+	})
+</script>
+</body>
+</html>

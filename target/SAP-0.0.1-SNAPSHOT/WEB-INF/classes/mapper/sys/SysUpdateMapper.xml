@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.sys.mapper.UpdateMapper">
+
+	<update id="insertReimPrintCount">
+		update reim_value
+		set
+		printcount=#{count}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="insertTaskPrintCount">
+		update task_value
+		set
+		printcount=#{count}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updateUserCount">
+		update statistics_value
+		set
+		usercount=#{allUserCount}
+		where
+		id = #{datetime}
+	</update>
+	
+	<update id="updataAllTitalprice">
+		update statistics_value
+		set
+		taskcount=#{allTaskTitalprice},reimcount=#{allReimTitalprice},
+		purchcount=#{allPurchTitalprice},loancount=#{allLoanTitalprice}
+		where
+		id = #{datetime}
+	</update>
+
+	<update id="updateExamineTask">
+		update task_value
+		set
+		status=#{status},reason = #{reason},progress=#{progress},
+		executive_value = #{executive_value},executive_time =#{executive_time},
+		manager_value = #{manager_value},manager_time =#{manager_time},
+		accounting_value = #{accounting_value},accounting_time =#{accounting_time},
+		Finance_value = #{Finance_value},Finance_time =#{Finance_time},
+		executive = #{executive},manager= #{manager},
+		accounting = #{accounting},Finance =#{Finance}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updateExamineLoan">
+		update loan_value
+		set
+		status=#{status},reason = #{reason},progress=#{progress},
+		manager_value = #{manager_value},manager_time =#{manager_time},
+		Finance_value = #{Finance_value},Finance_time =#{Finance_time},
+		manager= #{manager},Finance =#{Finance}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updateExaminePurch">
+		update purch_value
+		set
+		status=#{status},reason = #{reason},progress=#{progress},
+		manager_value = #{manager_value},manager_time =#{manager_time},
+		executive_value = #{executive_value},executive_time =#{executive_time},
+		manager= #{manager},executive = #{executive}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updateExamineReim">
+		update reim_value
+		set
+		status=#{status},reason = #{reason},manager_value = #{manager_value},manager_time =#{manager_time},
+		accounting_value = #{accounting_value},accounting_time =#{accounting_time},
+		Finance_value = #{Finance_value},Finance_time =#{Finance_time},
+		manager= #{manager},accounting = #{accounting},Finance =#{Finance},progress=#{progress}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updateExamineTaskPass">
+		update task_value
+		set
+		status=#{status},reason = #{reason},progress = #{progress},
+		manager = #{manager},executive = #{executive},
+		accounting = #{accounting}, Finance = #{Finance},
+		executive_value = #{executive_value},executive_time = #{executive_time},
+		manager_value = #{manager_value},manager_time =#{manager_time},
+		accounting_value = #{accounting_value},accounting_time =#{accounting_time},
+		Finance_value = #{Finance_value},Finance_time =#{Finance_time}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updateExamineLoanPass">
+		update loan_value
+		set
+		status=#{status},reason = #{reason},progress = #{progress},
+		manager = #{manager}, Finance = #{Finance},
+		manager_value = #{manager_value},manager_time =#{manager_time},
+		Finance_value = #{Finance_value},Finance_time =#{Finance_time}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updateExaminePurchPass">
+		update Purch_value
+		set
+		status=#{status},reason = #{reason},progress = #{progress},manager = #{manager},
+		executive = #{executive},
+		executive_value = #{executive_value},executive_time = #{executive_time},
+		manager_value = #{manager_value},manager_time =#{manager_time}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updateExamineReimPass">
+		update Reim_value
+		set
+		status=#{status},reason = #{reason},progress = #{progress},manager = #{manager},
+		accounting = #{accounting}, Finance = #{Finance},manager_value = #{manager_value},manager_time =#{manager_time},
+		accounting_value = #{accounting_value},accounting_time =#{accounting_time},
+		Finance_value = #{Finance_value},Finance_time =#{Finance_time}
+		where
+		id = #{id}
+	</update>
+
+	<update id="updateUser">
+		update user_value
+		set
+		username=#{username},name=#{name},phone=#{phone},
+		password=#{password},role=#{role},member=#{member},
+		status=#{status},sex=#{sex}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updateTask">
+		update task_value
+		set
+		title=#{title},createTime=#{createTime},goTime=#{goTime},backTime=#{backTime},totalPrice=#{totalPrice},
+		place=#{place},objective=#{objective},unitPrice=#{unitPrice},day=#{day},status=#{status},reason = #{reason},
+		manager = #{manager},accounting = #{accounting}, Finance = #{Finance},
+		manager_value = #{manager_value},manager_time =#{manager_time},
+		executive_value = #{executive_value},executive_time = #{executive_time},executive = #{executive},
+		accounting_value = #{accounting_value},accounting_time =#{accounting_time},
+		Finance_value = #{Finance_value},Finance_time =#{Finance_time}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updateReim">
+		update reim_value
+		set
+		title=#{title},createTime=#{createTime},useTime=#{useTime},price=#{price},goods=#{goods},
+		place=#{place},project=#{project},status=#{status},reason = #{reason},manager = #{manager},
+		accounting = #{accounting}, Finance = #{Finance},manager_value = #{manager_value},manager_time =#{manager_time},
+		accounting_value = #{accounting_value},accounting_time =#{accounting_time},
+		Finance_value = #{Finance_value},Finance_time =#{Finance_time}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updatePurch">
+		update Purch_value
+		set
+		title=#{title},createTime=#{createTime},price=#{price},goods=#{goods},
+		place=#{place},project=#{project},status=#{status},reason = #{reason},
+		manager = #{manager},executive = #{executive},
+		manager_value = #{manager_value},manager_time =#{manager_time},
+		executive_value = #{executive_value},executive_time = #{executive_time}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updateLoan">
+		update loan_value
+		set
+		title=#{title},createTime=#{createTime},price=#{price},
+		place=#{place},project=#{project},status=#{status},reason = #{reason},
+		manager = #{manager},Finance = #{Finance},
+		manager_value = #{manager_value},manager_time =#{manager_time},
+		Finance_value = #{Finance_value},Finance_time =#{Finance_time}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updataPictureSrcDelete">
+		update reim_value
+		set
+		address=#{address},progress = #{progress},status=#{status}
+		where
+		id = #{id}
+	</update>
+	
+	<update id="updataPictureSrc">
+		update reim_value
+		set
+		address=#{address},progress = #{progress},status=#{status},manager = #{manager},
+		accounting = #{accounting}, Finance = #{Finance},manager_value = #{manager_value},manager_time =#{manager_time},
+		accounting_value = #{accounting_value},accounting_time =#{accounting_time},
+		Finance_value = #{Finance_value},Finance_time =#{Finance_time},reason = #{reason}
+		where
+		id = #{id}
+	</update>
+
+	<update id="updateUserbyUser">
+		update user_value
+		set
+		username=#{username},name=#{name},phone=#{phone},
+		password=#{newPassword}
+		where
+		id = #{id}
+	</update>
+
+</mapper>
+
+
+

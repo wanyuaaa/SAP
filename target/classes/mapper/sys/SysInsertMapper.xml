@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.sys.mapper.InsertMapper">
+
+	<insert id="insertSysUserValue">
+		insert into
+		user_value
+		(id,username,name,phone,password,createTime,updateTime,role,member,status,sex,Logins)
+		values
+		(#{id},#{username},#{name},#{phone},#{password},#{createTime},#{updateTime},#{role},#{member},#{status},#{sex},#{Logins})
+	</insert>
+
+	<insert id="insertSysTaskValue">
+		insert into
+		task_value
+		(id,title,name,createTime,goTime,backTime,place,objective,unitPrice,status,day,totalPrice,progress,manager,executive,accounting,Finance,executive_time,executive_value,manager_time,manager_value,accounting_time,accounting_value,Finance_time,Finance_value,oderTime)
+		values
+		(#{id},#{title},#{name},#{createTime},#{goTime},#{backTime},#{place},#{objective},#{unitPrice},#{status},#{day},#{totalPrice},#{progress},#{manager},#{executive},#{accounting},#{Finance},#{executive_time},#{executive_value},#{manager_time},#{manager_value},#{accounting_time},#{accounting_value},#{Finance_time},#{Finance_value},sysdate)
+	</insert>
+	
+	<insert id="insertSysReimValue">
+		insert into
+		reim_value
+		(id,title,goods,name,createTime,address,useTime,price,place,project,progress,manager,executive,accounting,Finance,status,manager_time,manager_value,accounting_time,accounting_value,Finance_time,Finance_value,oderTime)
+		values
+		(#{id},#{title},#{goods},#{name},#{createTime},#{address},#{useTime},#{price},#{place},#{project},#{progress},#{manager},#{executive},#{accounting},#{Finance},#{status},#{manager_time},#{manager_value},#{accounting_time},#{accounting_value},#{Finance_time},#{Finance_value},sysdate)
+	</insert>
+	
+	<insert id="insertSysPurchValue">
+		insert into
+		purch_value
+		(id,title,goods,name,createTime,price,place,project,progress,manager,manager_value,manager_time,executive,executive_value,executive_time,status,oderTime)
+		values
+		(#{id},#{title},#{goods},#{name},#{createTime},#{price},#{place},#{project},#{progress},#{manager},#{manager_value},#{manager_time},#{executive},#{executive_value},#{executive_time},#{status},sysdate)
+	</insert>
+	
+	<insert id="insertSysLoanValue">
+		insert into
+		loan_value
+		(id,title,name,createTime,price,place,project,progress,manager,manager_value,manager_time,Finance,Finance_value,Finance_time,status,oderTime)
+		values
+		(#{id},#{title},#{name},#{createTime},#{price},#{place},#{project},#{progress},#{manager},#{manager_value},#{manager_time},#{Finance},#{Finance_value},#{Finance_time},#{status},sysdate)
+	</insert>
+	
+	<insert id="insertOperationValue">
+		insert into
+		operation_value
+		(id,title,name,createTime,oderTime,type)
+		values
+		(#{id},#{title},#{name},#{createTime},sysdate,#{type})
+	</insert>
+	
+	<insert id="insertUserCount">
+		insert into
+		statistics_value
+		(id,usercount)
+		values
+		(#{datetime},#{allUserCount})
+	</insert>
+	
+</mapper>
+
+
+

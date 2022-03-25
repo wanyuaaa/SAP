@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.sys.mapper.StatisticsMapper">
+
+	<select id="selectAllTaskCount" resultType="int">
+		select count(*)
+		from
+		task_value
+	</select>
+
+	<select id="selectAllReimCount" resultType="int">
+		select count(*)
+		from
+		reim_value
+	</select>
+
+	<select id="selectAllPurchCount" resultType="int">
+		select count(*)
+		from
+		purch_value
+	</select>
+	
+	<select id="selectAllLoanCount" resultType="int">
+		select count(*)
+		from
+		loan_value
+	</select>
+
+	<select id="selectAllTaskTitalprice"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		task_value
+		where
+		status = 1
+	</select>
+	
+	<select id="selectAllReimTitalprice"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		reim_value
+		where
+		status = 1
+	</select>
+	
+	<select id="selectAllPurchTitalprice"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		purch_value
+		where
+		status = 1
+	</select>
+	
+	<select id="selectAllLoanTitalprice"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		Loan_value
+		where
+		status = 1
+	</select>
+	
+	<select id="selectCountById" resultType="int">
+		select count(*)
+		from
+		statistics_value
+		where
+		id = #{datetime}
+	</select>
+	
+	<select id="selectAllTaskLastMouth"
+		resultType="com.xsw.common.entry.SysTaskValue">
+		select *
+		from
+		task_value
+		where
+		to_char(odertime,'YYYY/MM') = #{datetime} 
+		and 
+		status = 1
+	</select>
+	
+	<select id="selectAllReimLastMouth"
+		resultType="com.xsw.common.entry.SysReimValue">
+		select *
+		from
+		reim_value
+		where
+		to_char(odertime,'YYYY/MM') = #{datetime} 
+		and 
+		status = 1
+	</select>
+	
+	<select id="selectAllPurchLastMouth"
+		resultType="com.xsw.common.entry.SysPurchValue">
+		select *
+		from
+		purch_value
+		where
+		to_char(odertime,'YYYY/MM') = #{datetime} 
+		and 
+		status = 1
+	</select>
+	
+	<select id="selectAllLoanLastMouth"
+		resultType="com.xsw.common.entry.SysLoanValue">
+		select *
+		from
+		loan_value
+		where
+		to_char(odertime,'YYYY/MM') = #{datetime} 
+		and 
+		status = 1
+	</select>
+	
+	<select id="selectTaskCount" resultType="String">
+		select taskcount
+		from
+		statistics_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectReimCount" resultType="String">
+		select reimcount
+		from
+		statistics_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectPurchCount" resultType="String">
+		select purchcount
+		from
+		statistics_value
+		where
+		id = #{id}
+	</select>
+	
+	<select id="selectLoanCount" resultType="String">
+		select loancount
+		from
+		statistics_value
+		where
+		id = #{id}
+	</select>
+</mapper>
+
+
+

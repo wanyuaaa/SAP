@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.sys.mapper.DeleteMapper">
+
+	<delete id="deleteUser">
+		delete
+		from
+		user_value
+		where
+		id = #{id}
+	</delete>
+
+	<delete id="deleteTask">
+		delete
+		from
+		task_value
+		where
+		id = #{id}
+	</delete>
+	
+	<delete id="deletePurch">
+		delete
+		from
+		purch_value
+		where
+		id = #{id}
+	</delete>
+	
+	<delete id="deleteLoan">
+		delete
+		from
+		loan_value
+		where
+		id = #{id}
+	</delete>
+	
+	<delete id="deleteReim">
+		delete
+		from
+		reim_value
+		where
+		id = #{id}
+	</delete>
+</mapper>
+
+
+

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>主页</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="keywords"
+	content="ok-admin v2.0,ok-admin网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+<meta name="description"
+	content="ok-admin v2.0，顾名思义，很赞的后台模版，它是一款基于Layui框架的轻量级扁平化且完全免费开源的网站后台管理系统模板，适合中小型CMS后台系统。">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="../css/oksub.css" media="all" />
+<script type="text/javascript" src="../lib/loading/okLoading.js"></script>
+<script type="text/javascript" src="../lib/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="../lib/echarts/echarts.theme.js"></script>
+<script type="text/javascript" src="../lib/echarts/world/js/china.js"></script>
+</head>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+div .back {
+	width: 100%;
+}
+</style>
+<body class="ok-body-scroll console">
+	<div class="ok-body home">
+		<div class="layui-row layui-col-space15"
+			style="background-color: #F2F2F2;">
+			<div class="layui-col-xs6 layui-col-md3">
+				<div class="layui-card">
+					<a href="examine/task-show.html">
+						<div class="ok-card-body" style="background-color: #F2F2F2">
+							<div class="img-box" ok-pc-in-show>
+								<div class="stat-heading">
+									<span style="color: black;">补助报销：</span><span
+										style="color: blue;">主管&nbsp;&nbsp;</span>当前等待审核数→&nbsp;&nbsp;
+									<span id="e_task" style="color: red;">0</span>
+								</div>
+								<div class="stat-heading">
+									<span style="color: black;">补助报销：</span><span
+										style="color: blue;">会计&nbsp;&nbsp;</span>当前等待审核数→&nbsp;&nbsp;
+									<span id="a_task" style="color: red;">0</span>
+								</div>
+								<div class="stat-heading">
+									<span style="color: black;">补助报销：</span><span
+										style="color: blue;">经理&nbsp;&nbsp;</span>当前等待审核数→&nbsp;&nbsp;
+									<span id="m_task" style="color: red;">0</span>
+								</div>
+								<div class="stat-heading">
+									<span style="color: black;">补助报销：</span><span
+										style="color: blue;">出纳&nbsp;&nbsp;</span>当前等待审核数→&nbsp;&nbsp;
+									<span id="f_task" style="color: red;">0</span>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="layui-col-xs6 layui-col-md3">
+				<div class="layui-card">
+					<a href="examine/reim-show.html">
+						<div class="ok-card-body" style="background-color: #F2F2F2">
+							<div class="img-box" ok-pc-in-show>
+								<div class="stat-heading">
+									<span style="color: black;">费用报销：</span><span
+										style="color: blue;">会计&nbsp;&nbsp;</span>当前等待审核数→&nbsp;&nbsp;
+									<span id="a_reim" style="color: red;">0</span>
+								</div>
+								<div class="stat-heading">
+									<span style="color: black;">费用报销：</span><span
+										style="color: blue;">经理&nbsp;&nbsp;</span>当前等待审核数→&nbsp;&nbsp;
+									<span id="m_reim" style="color: red;">0</span>
+								</div>
+								<div class="stat-heading">
+									<span style="color: black;">费用报销：</span><span
+										style="color: blue;">出纳&nbsp;&nbsp;</span>当前等待审核数→&nbsp;&nbsp;
+									<span id="f_reim" style="color: red;">0</span>
+								</div>
+								<div class="stat-heading">&nbsp;&nbsp;</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="layui-col-xs6 layui-col-md3">
+				<div class="layui-card">
+					<div class="ok-card-body" style="background-color: #F2F2F2">
+						<a href="examine/purch-show.html">
+							<div class="img-box" ok-pc-in-show>
+								<div class="stat-heading">
+									<span style="color: black;">借款申请：</span><span
+										style="color: blue;">经理&nbsp;&nbsp;</span>当前等待审核数→&nbsp;&nbsp;
+									<span id="m_loan" style="color: red;">0</span>
+								</div>
+								<div class="stat-heading">
+									<span style="color: black;">借款申请：</span><span
+										style="color: blue;">出纳&nbsp;&nbsp;</span>当前等待审核数→&nbsp;&nbsp;
+									<span id="f_loan" style="color: red;">0</span>
+								</div>
+								<div class="stat-heading">&nbsp;&nbsp;</div>
+								<div class="stat-heading">&nbsp;&nbsp;</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="ok-body home">
+		<div class="layui-row layui-col-space15"
+			style="background-color: #F2F2F2">
+			<div class="layui-col-xs6 layui-col-md3">
+				<div class="layui-card" style="background-color: #F2F2F2">
+					<div class="ok-card-body" style="background-color: #F2F2F2">
+						<a href="examine/task-show.html">
+							<div class="img-box" ok-pc-in-show>
+								<img src="../images/home-01.png" alt="none" />
+							</div>
+							<div class="cart-r">
+								<div class="stat-heading">点击快捷跳转</div>
+								<div class="stat-heading">
+									<span style="color: red">补助</span>申请数目
+								</div>
+								<div class="stat-heading">
+									当前需审批：<span class="task" style="color: red">0</span>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-col-xs6 layui-col-md3">
+				<div class="layui-card ">
+					<div class="ok-card-body" style="background-color: #F2F2F2">
+						<a href="examine/reim-show.html">
+							<div class="img-box" ok-pc-in-show>
+								<img src="../images/home-02.png" alt="none" />
+							</div>
+							<div class="cart-r">
+								<div class="stat-heading">点击快捷跳转</div>
+								<div class="stat-heading">
+									<span style="color: red">报销</span>申请数目
+								</div>
+								<div class="stat-heading">
+									当前需审批：<span class="reim" style="color: red">0</span>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-col-xs6 layui-col-md3">
+				<div class="layui-card ">
+					<div class="ok-card-body" style="background-color: #F2F2F2">
+						<a href="examine/loan-show.html">
+							<div class="img-box" ok-pc-in-show>
+								<img src="../images/home-01.png" alt="none" />
+							</div>
+							<div class="cart-r">
+								<div class="stat-heading">点击快捷跳转</div>
+								<div class="stat-heading">
+									<span style="color: red">借款</span>申请数目
+								</div>
+								<div class="stat-heading">
+									当前需审批：<span class="loan" style="color: red">0</span>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="back"
+		style="height: 587px; background: url(../images/background3.jpg);"></div>
+</body>
+</html>
+<script type="text/javascript" src="../lib/layui/layui.js"></script>
+<script type="text/javascript" src="../js/console.js"></script>
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script>
+	$(function() {
+		selectNum();
+	});
+
+	function selectNum() {
+		var strCookie = document.cookie;
+		var arr = strCookie.split("; ");
+		var name = window.decodeURIComponent(window.atob(arr[1].substring(5)));
+
+		var url = "http://192.168.1.10/sap/select/selectNum.do";
+
+		var params = {
+			"name" : name
+		};
+		$.getJSON(url, params, function(result) {
+			console.log(result);
+			if (result.state == 1) {
+				$(".task").html(result.data.taskCount);
+				$(".reim").html(result.data.reimCount);
+				$(".purch").html(result.data.purchCount);
+				$(".loan").html(result.data.loanCount);
+				$("#e_task").html(result.data.e_taskCount);
+				$("#a_task").html(result.data.a_taskCount);
+				$("#m_task").html(result.data.m_taskCount);
+				$("#f_task").html(result.data.f_taskCount);
+				$("#a_reim").html(result.data.a_reimCount);
+				$("#m_reim").html(result.data.m_reimCount);
+				$("#f_reim").html(result.data.f_reimCount);
+				$("#m_loan").html(result.data.m_loanCount);
+				$("#f_loan").html(result.data.f_loanCount);
+			} else {
+				alert(result.message);
+			}
+		});
+
+	}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

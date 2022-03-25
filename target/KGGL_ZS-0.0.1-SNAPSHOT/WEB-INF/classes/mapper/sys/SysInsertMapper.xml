@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.sys.mapper.InsertMapper">
+
+	<insert id="insertSysUserValue">
+		insert into
+		user_value
+		(id,username,name,phone,password,createTime,updateTime,role,member,status,sex,Logins)
+		values
+		(#{id},#{username},#{name},#{phone},#{password},#{createTime},#{updateTime},#{role},#{member},#{status},#{sex},#{Logins})
+	</insert>
+
+	<insert id="insertSysTaskValue">
+		insert into
+		task_value
+		(id,title,name,createTime,goTime,backTime,place,objective,unitPrice,status,day,totalPrice,progress,manager,executive,accounting,Finance)
+		values
+		(#{id},#{title},#{name},#{createTime},#{goTime},#{backTime},#{place},#{objective},#{unitPrice},#{status},#{day},#{totalPrice},#{progress},#{manager},#{executive},#{accounting},#{Finance})
+	</insert>
+	
+	<insert id="insertSysReimValue">
+		insert into
+		reim_value
+		(id,title,goods,name,createTime,address,useTime,price,place,project,progress,manager,executive,accounting,Finance,status)
+		values
+		(#{id},#{title},#{goods},#{name},#{createTime},#{address},#{useTime},#{price},#{place},#{project},#{progress},#{manager},#{executive},#{accounting},#{Finance},#{status})
+	</insert>
+	
+	<insert id="insertSysPurchValue">
+		insert into
+		purch_value
+		(id,title,goods,name,createTime,price,place,project,progress,manager,executive,accounting,Finance,status)
+		values
+		(#{id},#{title},#{goods},#{name},#{createTime},#{price},#{place},#{project},#{progress},#{manager},#{executive},#{accounting},#{Finance},#{status})
+	</insert>
+</mapper>
+
+
+

@@ -1,0 +1,42 @@
+[
+	{
+		"title": "主页",
+		"href": "pages/consoleAdmin.html",
+		"fontFamily": "ok-icon",
+		"icon": "&#xe654;",
+		"spread": true,
+		"isCheck": true
+	},
+	{
+		"title": "申请",
+		"href": "",
+		"icon": "&#xe67c;",
+		"spread": false,
+		"children": [
+			{
+				"title": "补助申请",
+				"href": "pages/often/task.html",
+				"icon": "&#xe67c;",
+				"spread": false
+			},
+			{
+				"title": "报销申请",
+				"href": "pages/often/reim.html",
+				"icon": "&#xe67c;",
+				"spread": false
+			},
+			{
+				"title": "采购申请",
+				"href": "pages/often/purch.html",
+				"icon": "&#xe67c;",
+				"spread": false
+			},
+			{
+				"title": "借款申请",
+				"href": "pages/often/loan.html",
+				"icon": "&#xe67c;",
+				"spread": false
+			}
+		]
+	}
+]

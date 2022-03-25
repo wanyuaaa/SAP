@@ -1,0 +1,36 @@
+[
+  {
+    "title": "主页",
+    "href": "pages/console.html",
+    "fontFamily": "ok-icon",
+    "icon": "&#xe654;",
+    "spread": true,
+    "isCheck": true
+  },
+  {
+    "title": "申请报销页面",
+    "href": "",
+    "icon": "&#xe705;",
+    "spread": false,
+    "children": [
+      {
+        "title": "补助申请列表",
+        "href": "pages/often/task.html",
+        "icon": "&#xe62e;",
+        "spread": false
+      },
+       {
+        "title": "报销申请列表",
+        "href": "pages/often/reim.html",
+        "icon": "&#xe62e;",
+        "spread": false
+      },
+       {
+        "title": "采购申请列表",
+        "href": "pages/often/purch.html",
+        "icon": "&#xe62e;",
+        "spread": false
+      }
+    ]
+  }
+]

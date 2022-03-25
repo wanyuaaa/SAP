@@ -1,0 +1,126 @@
+[
+	{
+		"title": "主页",
+		"href": "pages/consoleF.html",
+		"fontFamily": "ok-icon",
+		"icon": "&#xe654;",
+		"spread": true,
+		"isCheck": true
+	},
+	{
+		"title": "申请",
+		"href": "",
+		"icon": "&#xe67c;",
+		"spread": false,
+		"children": [
+			{
+				"title": "补助申请",
+				"href": "pages/often/task.html",
+				"icon": "&#xe67c;",
+				"spread": false
+			},
+			{
+				"title": "报销申请",
+				"href": "pages/often/reim.html",
+				"icon": "&#xe67c;",
+				"spread": false
+			},
+			{
+				"title": "采购申请",
+				"href": "pages/often/purch.html",
+				"icon": "&#xe67c;",
+				"spread": false
+			},
+			{
+				"title": "借款申请",
+				"href": "pages/often/loan.html",
+				"icon": "&#xe67c;",
+				"spread": false
+			}
+		]
+	},
+	{
+		"title": "审批",
+		"href": "",
+		"icon": "&#xe642;",
+		"spread": false,
+		"children": [
+			{
+				"title": "补助审批",
+				"href": "pages/examine/task-show.html",
+				"icon": "&#xe63c;",
+				"spread": false
+			},
+			{
+				"title": "报销审批",
+				"href": "pages/examine/reim-show.html",
+				"icon": "&#xe63c;",
+				"spread": false
+			},
+			{
+				"title": "借款审批",
+				"href": "pages/examine/loan-show.html",
+				"icon": "&#xe63c;",
+				"spread": false
+			}
+		]
+	},
+	{
+		"title": "记录",
+		"href": "",
+		"icon": "&#xe62d;",
+		"spread": false,
+		"children": [
+			{
+				"title": "补助记录",
+				"href": "pages/often/task-last.html",
+				"icon": "&#xe60a;",
+				"spread": false
+			},
+			{
+				"title": "报销记录",
+				"href": "pages/often/reim-last.html",
+				"icon": "&#xe60a;",
+				"spread": false
+			},
+			{
+				"title": "采购记录",
+				"href": "pages/often/purch-last.html",
+				"icon": "&#xe60a;",
+				"spread": false
+			},
+			{
+				"title": "借款记录",
+				"href": "pages/often/loan-last.html",
+				"icon": "&#xe60a;",
+				"spread": false
+			}
+		]
+	},
+	{
+		"title": "统计",
+		"href": "",
+		"icon": "&#xe629;",
+		"spread": false,
+		"children": [
+			{
+				"title": "补助统计",
+				"href": "pages/data/taskData.html",
+				"icon": "&#xe637;",
+				"spread": false
+			},
+			{
+				"title": "报销统计",
+				"href": "pages/data/reimData.html",
+				"icon": "&#xe637;",
+				"spread": false
+			},
+			{
+				"title": "借款统计",
+				"href": "pages/data/loanData.html",
+				"icon": "&#xe637;",
+				"spread": false
+			}
+		]
+	}
+]
